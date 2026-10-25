@@ -1,0 +1,644 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="Filip Gliwa — fotografia krajobrazów, natury i siatkówki.">
+<title>Filip Gliwa — Photography</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #f7f6f2;
+  --surface: #fff;
+  --text: #191919;
+  --muted: #777770;
+  --line: #deddd7;
+  --accent: #a68a64;
+  --header: rgba(247,246,242,.92);
+}
+body.dark {
+  --bg: #111;
+  --surface: #1b1b1b;
+  --text: #f3f0e9;
+  --muted: #aaa69e;
+  --line: #353535;
+  --accent: #c7a77b;
+  --header: rgba(17,17,17,.92);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  transition: background .3s, color .3s;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+img { display: block; width: 100%; }
+.container { width: min(1200px, 90%); margin: auto; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--header);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--line);
+}
+.nav {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.logo {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  white-space: nowrap;
+}
+.logo span {
+  display: block;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--text); }
+.theme-button, .menu-button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.menu-button { display: none; }
+
+.hero {
+  min-height: 650px;
+  padding: 70px 0 85px;
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 65px;
+  align-items: center;
+}
+.eyebrow {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: 700;
+}
+h1, h2, h3, p { margin-top: 0; }
+h1, h2 { font-family: 'Playfair Display', serif; font-weight: 400; }
+h1 {
+  font-size: clamp(48px, 6.5vw, 84px);
+  line-height: 1.04;
+  letter-spacing: -2px;
+  margin: 25px 0;
+}
+h1 em { color: var(--accent); font-weight: 400; }
+.hero-description {
+  max-width: 430px;
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 15px;
+}
+.actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 22px;
+  border: 1px solid var(--text);
+  background: var(--text);
+  color: var(--bg);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: .25s;
+  cursor: pointer;
+}
+.button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.button.outline { color: var(--text); background: transparent; }
+.button.outline:hover { color: white; }
+
+.hero-image {
+  position: relative;
+  min-height: 470px;
+  overflow: hidden;
+  background: #d8d4cb;
+}
+.hero-image img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s;
+}
+.hero-image:hover img { transform: scale(1.04); }
+.image-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0,0,0,.55);
+  color: white;
+  padding: 10px 14px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.section { padding: 95px 0; border-top: 1px solid var(--line); }
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 35px;
+}
+h2 { font-size: clamp(36px, 4vw, 54px); margin: 12px 0 0; }
+.section-description {
+  max-width: 390px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.filter {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  padding: 10px 17px;
+  cursor: pointer;
+  font-size: 11px;
+  letter-spacing: 1px;
+  transition: .2s;
+}
+.filter.active, .filter:hover {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--line);
+  cursor: zoom-in;
+  aspect-ratio: 4 / 5;
+  animation: appear .6s both;
+}
+.photo img { height: 100%; object-fit: cover; transition: transform .6s; }
+.photo:hover img { transform: scale(1.06); }
+.photo::after {
+  content: "ZOBACZ ZDJĘCIE ↗";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 35px 18px 18px;
+  color: white;
+  font-size: 10px;
+  letter-spacing: 2px;
+  background: linear-gradient(transparent, rgba(0,0,0,.65));
+  opacity: 0;
+  transition: opacity .3s;
+}
+.photo:hover::after { opacity: 1; }
+.photo.hidden { display: none; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 75px;
+  align-items: center;
+}
+.about-image { height: 460px; overflow: hidden; background: var(--line); }
+.about-image img { height: 100%; object-fit: cover; }
+.about-copy p { color: var(--muted); line-height: 2; font-size: 14px; }
+.about-copy h2 { margin-bottom: 28px; }
+.note {
+  border-left: 2px solid var(--accent);
+  padding: 5px 0 5px 18px;
+  margin-top: 28px;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  line-height: 1.6;
+}
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  margin-top: 35px;
+}
+.service {
+  padding: 30px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.service-number { color: var(--accent); font-size: 11px; letter-spacing: 2px; }
+.service h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 25px 0 12px;
+}
+.service p { font-size: 13px; line-height: 1.8; color: var(--muted); margin-bottom: 0; }
+
+.contact-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: clamp(28px, 6vw, 70px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+.contact-panel h2 { margin-bottom: 18px; }
+.contact-panel p { color: var(--muted); line-height: 1.8; max-width: 460px; }
+
+footer { border-top: 1px solid var(--line); padding: 30px 0; color: var(--muted); font-size: 11px; letter-spacing: 1px; }
+.footer-inner { display: flex; justify-content: space-between; gap: 20px; }
+.socials { display: flex; gap: 20px; }
+.socials a:hover { color: var(--accent); }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0,0,0,.94);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: min(1100px, 92vw);
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.close-lightbox {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  border: 1px solid #777;
+  background: transparent;
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 25px;
+  cursor: pointer;
+}
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s, transform .7s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 800px) {
+  .hero { grid-template-columns: 1fr; gap: 35px; padding-top: 55px; }
+  .hero-image { min-height: 420px; }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { grid-template-columns: 1fr; gap: 35px; }
+  .about-image { height: 350px; }
+  .services { grid-template-columns: 1fr; }
+  .section-heading { align-items: start; flex-direction: column; }
+  .contact-panel { align-items: start; flex-direction: column; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 78px;
+    left: 0;
+    right: 0;
+    padding: 25px 5%;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    align-items: start;
+  }
+  .nav-links.open { display: flex; }
+  .menu-button { display: inline-block; }
+  .nav-actions { display: flex; gap: 8px; }
+}
+@media (max-width: 480px) {
+  .gallery { grid-template-columns: 1fr 1fr; gap: 9px; }
+  .photo { aspect-ratio: 3 / 4; }
+  .hero-image { min-height: 330px; }
+  .section { padding: 65px 0; }
+  .footer-inner { flex-direction: column; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#home">FILIP GLIWA<span>PHOTOGRAPHY</span></a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Start</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#about">O mnie</a>
+      <a href="#services">Obszary fotografii</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="theme-button" id="themeToggle" aria-label="Zmień motyw">☾</button>
+      <button class="menu-button" id="menuToggle" aria-label="Otwórz menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="container hero" id="home">
+  <div class="hero-copy reveal">
+    <div class="eyebrow">Fotografia · Natura · Sport</div>
+    <h1>Świat widziany<br>moim <em>okiem.</em></h1>
+    <p class="hero-description">
+      Nazywam się Filip Gliwa. Fotografuję krajobrazy, naturę i sport,
+      szukając wyjątkowych kadrów, światła oraz emocji. Zapraszam do mojego świata.
+    </p>
+    <div class="actions">
+      <a class="button" href="#portfolio">Zobacz portfolio ↗</a>
+      <a class="button outline" href="#contact">Skontaktuj się</a>
+    </div>
+  </div>
+
+  <div class="hero-image reveal">
+    <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=85" alt="Górski krajobraz nad jeziorem">
+    <div class="image-caption">Odkrywaj. Obserwuj. Fotografuj.</div>
+  </div>
+</section>
+
+<section class="section" id="portfolio">
+  <div class="container">
+    <div class="section-heading reveal">
+      <div>
+        <div class="eyebrow">Wybrane fotografie</div>
+        <h2>Moje portfolio</h2>
+      </div>
+      <p class="section-description">
+        Krajobrazy, natura i siatkówka — trzy obszary, w których szukam
+        ciekawych kadrów i wyjątkowych momentów.
+      </p>
+    </div>
+
+    <div class="filters reveal" id="filters">
+      <button class="filter active" data-filter="all">Wszystkie</button>
+      <button class="filter" data-filter="nature">Natura</button>
+      <button class="filter" data-filter="landscape">Krajobrazy</button>
+      <button class="filter" data-filter="volleyball">Siatkówka</button>
+    </div>
+
+    <div class="gallery" id="gallery">
+      <div class="photo" data-category="nature">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=85" alt="Zielony las">
+      </div>
+      <div class="photo" data-category="landscape">
+        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=85" alt="Jezioro otoczone górami">
+      </div>
+      <div class="photo" data-category="volleyball">
+        <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=900&q=85" alt="Siatkówka">
+      </div>
+      <div class="photo" data-category="nature">
+        <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=900&q=85" alt="Dzika przyroda">
+      </div>
+      <div class="photo" data-category="landscape">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=85" alt="Górskie szczyty">
+      </div>
+      <div class="photo" data-category="volleyball">
+        <img src="https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=900&q=85" alt="Piłka do siatkówki">
+      </div>
+      <div class="photo" data-category="nature">
+        <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=900&q=85" alt="Natura o wschodzie słońca">
+      </div>
+      <div class="photo" data-category="landscape">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85" alt="Rozległy krajobraz">
+      </div>
+      <div class="photo" data-category="volleyball">
+        <img src="https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=900&q=85" alt="Sport i siatkówka">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container about-grid">
+    <div class="about-image reveal">
+      <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1100&q=85" alt="Aparat fotograficzny">
+    </div>
+    <div class="about-copy reveal">
+      <div class="eyebrow">Kilka słów o mnie</div>
+      <h2>Za każdym kadrem<br>stoi historia.</h2>
+      <p>
+        Jestem Filip Gliwa i interesuję się fotografią oraz odkrywaniem
+        świata przez obiektyw. Lubię szukać światła, ciekawych kompozycji
+        i momentów, które łatwo przeoczyć.
+      </p>
+      <p>
+        Szczególnie interesują mnie krajobrazy, natura oraz siatkówka —
+        od spokojnych widoków po dynamiczne sportowe akcje.
+      </p>
+      <div class="note">„Nie chodzi tylko o to, co widzisz, ale o to, jak to pokazujesz.”</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-heading reveal">
+      <div>
+        <div class="eyebrow">Moje zainteresowania</div>
+        <h2>Obszary fotografii</h2>
+      </div>
+      <p class="section-description">
+        Trzy obszary, które pozwalają mi uchwycić piękno świata,
+        wyjątkowe miejsca i sportowe emocje.
+      </p>
+    </div>
+
+    <div class="services">
+      <article class="service reveal">
+        <div class="service-number">01 / KRAJOBRAZY</div>
+        <h3>Krajobrazy</h3>
+        <p>Góry, jeziora, panoramy i wyjątkowe miejsca uchwycone w odpowiednim świetle.</p>
+      </article>
+      <article class="service reveal">
+        <div class="service-number">02 / NATURA</div>
+        <h3>Natura</h3>
+        <p>Przyroda, leśne ścieżki, detale i chwile, które warto zatrzymać w kadrze.</p>
+      </article>
+      <article class="service reveal">
+        <div class="service-number">03 / SPORT</div>
+        <h3>Siatkówka</h3>
+        <p>Dynamika gry, emocje, wyskoki i sportowe momenty uchwycone w ruchu.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-panel reveal">
+      <div>
+        <div class="eyebrow">Nawiążmy kontakt</div>
+        <h2>Masz pomysł?<br>Porozmawiajmy.</h2>
+        <p>
+          Chcesz porozmawiać o fotografii lub współpracy?
+          Napisz wiadomość przez Gmaila albo znajdź mnie na Instagramie.
+        </p>
+      </div>
+      <a class="button"
+         href="https://mail.google.com/mail/?view=cm&fs=1&to=f.gliwa06%40gmail.com&su=Wiadomo%C5%9B%C4%87%20ze%20strony%20Filipa%20Gliwy"
+         target="_blank"
+         rel="noopener noreferrer">
+        Napisz wiadomość ↗
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© <span id="year"></span> FILIP GLIWA · PHOTOGRAPHY</div>
+    <div class="socials">
+      <a href="https://www.instagram.com/filip.gliwa.raw/"
+         target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+      <a href="#home">Powrót na górę ↑</a>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-label="Powiększone zdjęcie">
+  <button class="close-lightbox" id="closeLightbox" aria-label="Zamknij">×</button>
+  <img id="lightboxImage" src="" alt="Powiększone zdjęcie">
+</div>
+
+<script>
+const body = document.body;
+const themeToggle = document.getElementById('themeToggle');
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Tryb jasny i ciemny
+try {
+  if (localStorage.getItem('filip-theme') === 'dark') {
+    body.classList.add('dark');
+    themeToggle.textContent = '☀';
+  }
+} catch (error) {}
+
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark');
+  const isDark = body.classList.contains('dark');
+  themeToggle.textContent = isDark ? '☀' : '☾';
+  try {
+    localStorage.setItem('filip-theme', isDark ? 'dark' : 'light');
+  } catch (error) {}
+});
+
+// Menu mobilne
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+// Filtrowanie galerii
+const filters = document.querySelectorAll('.filter');
+const photos = document.querySelectorAll('.photo');
+
+filters.forEach(button => {
+  button.addEventListener('click', () => {
+    filters.forEach(item => item.classList.remove('active'));
+    button.classList.add('active');
+    const category = button.dataset.filter;
+
+    photos.forEach((photo, index) => {
+      const show = category === 'all' || photo.dataset.category === category;
+      photo.classList.toggle('hidden', !show);
+      if (show) photo.style.animationDelay = (index % 6) * 70 + 'ms';
+    });
+  });
+});
+
+// Powiększanie zdjęć
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+
+photos.forEach(photo => {
+  photo.addEventListener('click', () => {
+    const image = photo.querySelector('img');
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('closeLightbox').addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', event => {
+  if (event.target === lightbox) closeLightbox();
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeLightbox();
+});
+
+// Animacje przy przewijaniu
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(element => {
+  revealObserver.observe(element);
+});
+</script>
+</body>
+</html>
