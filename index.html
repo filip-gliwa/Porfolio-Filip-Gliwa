@@ -896,29 +896,79 @@
         menuToggle.textContent = '☰';
       });
     });
-
-    // Filtrowanie galerii
-    const filters = document.querySelectorAll('.filter');
+    
+<script>
+    // Filtrowanie galerii i podkategorie klubów
+    
+       const filters = document.querySelectorAll('#filters > .filter');
+    const teamFilters = document.querySelectorAll('#teamFilters .team-filter');
+    const teamFiltersBox = document.getElementById('teamFilters');
     const photos = document.querySelectorAll('.photo');
 
+    let selectedCategory = 'all';
+    let selectedTeam = 'all';
+
+     function updateGallery() {
+      photos.forEach((photo, index) => {
+        const categoryMatches =
+          selectedCategory === 'all' ||
+          photo.dataset.category === selectedCategory;
+        
+        const teamMatches =
+          selectedCategory !== 'volleyball' ||
+          selectedTeam === 'all' ||
+          photo.dataset.team === selectedTeam;
+
+         const show = categoryMatches && teamMatches;
+
+         photo.classList.toggle('hidden', !show);
+
+        if (show) {
+          photo.style.animationDelay = (index % 6) * 70 + 'ms';
+        }
+      });
+    }
+
+    // Główne kategorie
     filters.forEach(button => {
       button.addEventListener('click', () => {
         filters.forEach(item => item.classList.remove('active'));
         button.classList.add('active');
 
-        const category = button.dataset.filter;
+        selectedCategory = button.dataset.filter;
+        selectedTeam = 'all';
 
-        photos.forEach((photo, index) => {
-          const show = category === 'all' || photo.dataset.category === category;
+        teamFilters.forEach(item => item.classList.remove('active'));
 
-          photo.classList.toggle('hidden', !show);
+        const allTeamsButton = document.querySelector(
+          '#teamFilters [data-team-filter="all"]'
+        );
 
-          if (show) {
-            photo.style.animationDelay = (index % 6) * 70 + 'ms';
-          }
-        });
+        if (allTeamsButton) {
+          allTeamsButton.classList.add('active');
+        }
+
+        teamFiltersBox.style.display =
+          selectedCategory === 'volleyball' ? 'flex' : 'none';
+
+        updateGallery();
       });
     });
+
+    // Filtrowanie według klubu
+    teamFilters.forEach(button => {
+      button.addEventListener('click', () => {
+        teamFilters.forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+
+        selectedTeam = button.dataset.teamFilter;
+        updateGallery();
+      });
+    });
+
+     // Wyświetlenie galerii po załadowaniu kodu
+  updateGallery();
+</script>
 
     // Powiększanie zdjęć
     const lightbox = document.getElementById('lightbox');
