@@ -121,7 +121,36 @@
 
     .nav-actions {
       display: flex;
+      align-items: center;
       gap: 8px;
+    }
+
+    .header-socials {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .header-socials .social-link {
+      width: 36px;
+      height: 36px;
+    }
+
+    .contact-socials {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .contact-socials-label {
+      width: 100%;
+      margin-bottom: 2px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
     }
 
     .theme-button,
@@ -137,6 +166,42 @@
 
     .menu-button {
       display: none;
+    }
+
+    .profile-portrait {
+      position: relative;
+      width: 112px;
+      height: 112px;
+      margin-bottom: 26px;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      padding: 5px;
+      background: var(--surface);
+      box-shadow: 0 8px 24px rgba(0,0,0,.10);
+      overflow: hidden;
+    }
+
+    .profile-portrait img {
+      position: absolute;
+      inset: 5px;
+      width: calc(100% - 10px);
+      height: calc(100% - 10px);
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .profile-portrait-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--line);
+      color: var(--muted);
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      letter-spacing: 1px;
     }
 
     .hero {
@@ -460,11 +525,61 @@
 
     .socials {
       display: flex;
-      gap: 20px;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .socials a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--muted);
+      transition: color .2s, transform .2s, border-color .2s;
     }
 
     .socials a:hover {
       color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .social-icon {
+      width: 20px;
+      height: 20px;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .social-link {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+    }
+
+    .social-top {
+      margin-left: 8px;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 800px) {
+      .header-socials { gap: 3px; }
+      .header-socials .social-link { width: 31px; height: 31px; }
+      .nav-actions { gap: 5px; }
+    }
+
+    @media (max-width: 480px) {
+      .socials { gap: 10px; }
+      .social-link { width: 38px; height: 38px; }
+      .header-socials .social-link { width: 28px; height: 28px; }
+      .header-socials .social-icon { width: 16px; height: 16px; }
+      .nav-actions { gap: 4px; }
+      .theme-button, .menu-button { width: 34px; height: 34px; }
+      .social-top { margin-left: 0; }
     }
 
     .lightbox {
@@ -628,6 +743,17 @@
       </nav>
 
       <div class="nav-actions">
+        <div class="header-socials" aria-label="Moje profile społecznościowe">
+          <a class="social-link" href="https://www.tiktok.com/@filip.gliwa.raw" target="_blank" rel="noopener noreferrer" aria-label="TikTok — otwórz mój profil" title="TikTok">
+  <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 7.2a6.8 6.8 0 0 1-4.1-1.4v8.1a6.2 6.2 0 1 1-5.4-6.1v3.3a2.9 2.9 0 1 0 2.1 2.8V2.5h3.3c.2 2 1.8 3.8 4.1 4.1v.6Z"/></svg>
+</a>
+<a class="social-link" href="https://www.instagram.com/filip.gliwa.raw/" target="_blank" rel="noopener noreferrer" aria-label="Instagram — otwórz mój profil" title="Instagram">
+  <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+</a>
+<a class="social-link" href="https://www.facebook.com/filip.gliwa.1" target="_blank" rel="noopener noreferrer" aria-label="Facebook — otwórz mój profil" title="Facebook">
+  <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.4 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v1.9H7v3.1h2.7v8h3.7Z"/></svg>
+</a>
+        </div>
         <button class="theme-button" id="themeToggle" aria-label="Zmień motyw">☾</button>
         <button class="menu-button" id="menuToggle" aria-label="Otwórz menu">☰</button>
       </div>
@@ -637,6 +763,10 @@
   <main>
     <section class="container hero" id="home">
       <div class="hero-copy reveal">
+        <div class="profile-portrait" aria-label="Miejsce na zdjęcie portretowe">
+          <span class="profile-portrait-placeholder" aria-hidden="true">FG</span>
+          <img src="photos/portret.jpg" alt="Portret Filipa Gliwy" onerror="this.style.display='none'">
+        </div>
         <div class="eyebrow">Fotografia · Natura · Sport</div>
         <h1>Świat widziany<br>moim <em>okiem.</em></h1>
 
@@ -824,8 +954,20 @@
 
             <p>
               Chcesz porozmawiać o fotografii lub współpracy?
-              Napisz wiadomość przez Gmaila albo znajdź mnie na Instagramie.
+              Napisz wiadomość przez Gmaila albo znajdź mnie w mediach społecznościowych.
             </p>
+            <div class="contact-socials" aria-label="Moje profile społecznościowe">
+              <div class="contact-socials-label">Znajdź mnie również tutaj</div>
+              <a class="social-link" href="https://www.tiktok.com/@filip.gliwa.raw" target="_blank" rel="noopener noreferrer" aria-label="TikTok — otwórz mój profil" title="TikTok">
+  <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 7.2a6.8 6.8 0 0 1-4.1-1.4v8.1a6.2 6.2 0 1 1-5.4-6.1v3.3a2.9 2.9 0 1 0 2.1 2.8V2.5h3.3c.2 2 1.8 3.8 4.1 4.1v.6Z"/></svg>
+</a>
+<a class="social-link" href="https://www.instagram.com/filip.gliwa.raw/" target="_blank" rel="noopener noreferrer" aria-label="Instagram — otwórz mój profil" title="Instagram">
+  <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+</a>
+<a class="social-link" href="https://www.facebook.com/filip.gliwa.1" target="_blank" rel="noopener noreferrer" aria-label="Facebook — otwórz mój profil" title="Facebook">
+  <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.4 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v1.9H7v3.1h2.7v8h3.7Z"/></svg>
+</a>
+            </div>
           </div>
 
           <a class="button"
@@ -843,11 +985,31 @@
     <div class="container footer-inner">
       <div>© <span id="year"></span> FILIP GLIWA · PHOTOGRAPHY</div>
 
-      <div class="socials">
-        <a href="https://www.instagram.com/filip.gliwa.raw/"
-           target="_blank"
-           rel="noopener noreferrer">Instagram ↗</a>
-        <a href="#home">Powrót na górę ↑</a>
+      <div class="socials" aria-label="Moje profile społecznościowe">
+        <a class="social-link" href="https://www.tiktok.com/@filip.gliwa.raw"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="TikTok — otwórz mój profil" title="TikTok">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M19.6 7.2a6.8 6.8 0 0 1-4.1-1.4v8.1a6.2 6.2 0 1 1-5.4-6.1v3.3a2.9 2.9 0 1 0 2.1 2.8V2.5h3.3c.2 2 1.8 3.8 4.1 4.1v.6Z"/>
+          </svg>
+        </a>
+        <a class="social-link" href="https://www.instagram.com/filip.gliwa.raw/"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Instagram — otwórz mój profil" title="Instagram">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.7" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a class="social-link" href="https://www.facebook.com/filip.gliwa.1"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Facebook — otwórz mój profil" title="Facebook">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M13.4 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v1.9H7v3.1h2.7v8h3.7Z"/>
+          </svg>
+        </a>
+        <a class="social-top" href="#home">Powrót na górę ↑</a>
       </div>
     </div>
   </footer>
@@ -897,26 +1059,47 @@
       });
     });
 
-    // Filtrowanie galerii
-    const filters = document.querySelectorAll('.filter');
+    // Filtrowanie galerii i podkategorie klubów
+    const filters = document.querySelectorAll('#filters > .filter');
+    const teamFilters = document.querySelectorAll('#teamFilters .team-filter');
+    const teamFiltersBox = document.getElementById('teamFilters');
     const photos = document.querySelectorAll('.photo');
+
+    let selectedCategory = 'all';
+    let selectedTeam = 'all';
+
+    function updateGallery() {
+      photos.forEach((photo, index) => {
+        const categoryMatches = selectedCategory === 'all' ||
+          photo.dataset.category === selectedCategory;
+        const teamMatches = selectedCategory !== 'volleyball' ||
+          selectedTeam === 'all' || photo.dataset.team === selectedTeam;
+        const show = categoryMatches && teamMatches;
+
+        photo.classList.toggle('hidden', !show);
+        if (show) photo.style.animationDelay = (index % 6) * 70 + 'ms';
+      });
+    }
 
     filters.forEach(button => {
       button.addEventListener('click', () => {
         filters.forEach(item => item.classList.remove('active'));
         button.classList.add('active');
+        selectedCategory = button.dataset.filter;
+        selectedTeam = 'all';
 
-        const category = button.dataset.filter;
+        teamFilters.forEach(item => item.classList.toggle('active', item.dataset.teamFilter === 'all'));
+        teamFiltersBox.style.display = selectedCategory === 'volleyball' ? 'flex' : 'none';
+        updateGallery();
+      });
+    });
 
-        photos.forEach((photo, index) => {
-          const show = category === 'all' || photo.dataset.category === category;
-
-          photo.classList.toggle('hidden', !show);
-
-          if (show) {
-            photo.style.animationDelay = (index % 6) * 70 + 'ms';
-          }
-        });
+    teamFilters.forEach(button => {
+      button.addEventListener('click', () => {
+        teamFilters.forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        selectedTeam = button.dataset.teamFilter;
+        updateGallery();
       });
     });
 
