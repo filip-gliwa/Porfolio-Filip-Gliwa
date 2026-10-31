@@ -6,6 +6,11 @@
   <meta name="theme-color" content="#111111">
   <meta name="description" content="Filip Gliwa — fotografia krajobrazów, natury i siatkówki.">
   <title>Filip Gliwa — Photography</title>
+  <link rel="icon" type="image/jpeg" href="photos/logo_fg.jpeg">
+  <link rel="apple-touch-icon" href="photos/logo_fg.jpeg">
+  <meta property="og:title" content="Filip Gliwa — Photography">
+  <meta property="og:description" content="Fotografia krajobrazów, natury i siatkówki.">
+  <meta property="og:image" content="photos/logo_fg.jpeg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,6 +84,7 @@
 
     .nav {
       min-height: 78px;
+      padding: 9px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -86,19 +92,70 @@
     }
 
     .logo {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 7px 18px 9px;
+      border-radius: 10px;
+      background: #16171b;
+      color: #f4f0e8;
       white-space: nowrap;
+      transition: padding .3s, transform .3s;
     }
 
-    .logo span {
+    .logo:hover {
+      transform: translateY(-1px);
+    }
+
+    .logo-mark {
+      position: relative;
       display: block;
+      width: 58px;
+      height: 58px;
+      overflow: hidden;
+      transition: width .3s, height .3s;
+    }
+
+    /* pokazuje tylko ikonę (F + aparat + G) z pełnego logo */
+    .logo-mark img {
+      position: absolute;
+      left: -47.41%;
+      top: -32.07%;
+      width: 192.76%;
+      max-width: none;
+      height: auto;
+    }
+
+    .logo-name {
+      margin-top: 2px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3.2px;
+      text-indent: 3.2px;
+    }
+
+    .logo-sub {
       margin-top: 4px;
-      font-size: 9px;
+      font-size: 7px;
       font-weight: 500;
-      letter-spacing: 4px;
-      color: var(--muted);
+      letter-spacing: 5.5px;
+      text-indent: 5.5px;
+      color: #e0a458;
+    }
+
+    /* Po przewinięciu strony napisy chowają się, zostaje sama ikona */
+    header.compact .logo {
+      padding: 5px 8px;
+    }
+
+    header.compact .logo-mark {
+      width: 48px;
+      height: 48px;
+    }
+
+    header.compact .logo-name,
+    header.compact .logo-sub {
+      display: none;
     }
 
     .nav-links {
@@ -578,6 +635,11 @@
     }
 
     @media (max-width: 480px) {
+      .logo { padding: 6px 12px 8px; }
+      .logo-mark { width: 46px; height: 46px; }
+      .logo-name { font-size: 9px; letter-spacing: 2.4px; text-indent: 2.4px; }
+      .logo-sub { font-size: 6px; letter-spacing: 4px; text-indent: 4px; }
+      header.compact .logo-mark { width: 40px; height: 40px; }
       .socials { gap: 10px; }
       .social-link { width: 38px; height: 38px; }
       .header-socials .social-link { width: 28px; height: 28px; }
@@ -734,9 +796,10 @@
 <body>
   <header>
     <div class="container nav">
-      <a class="logo" href="#home">
-        FILIP GLIWA
-        <span>PHOTOGRAPHY</span>
+      <a class="logo" href="#home" aria-label="Filip Gliwa — Fotografia, strona główna">
+        <span class="logo-mark"><img src="photos/logo_fg.jpeg" alt=""></span>
+        <span class="logo-name">FILIP GLIWA</span>
+        <span class="logo-sub">FOTOGRAFIA</span>
       </a>
 
       <nav class="nav-links" id="navLinks">
@@ -1054,6 +1117,16 @@
     const navLinks = document.getElementById('navLinks');
 
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Zwijanie logo w nagłówku po przewinięciu
+    const siteHeader = document.querySelector('header');
+    function updateHeader() {
+      const y = window.scrollY;
+      if (y > 60) siteHeader.classList.add('compact');
+      else if (y < 10) siteHeader.classList.remove('compact');
+    }
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    updateHeader();
 
     // Tryb jasny i ciemny
     try {
